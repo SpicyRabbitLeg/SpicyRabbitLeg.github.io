@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>人员全生命周期一体化管控平台</title>
+  <link rel="stylesheet" href="https://unpkg.com/element-plus/dist/index.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/workflow.css">
+  <link rel="stylesheet" href="css/modules.css">
+</head>
+<body>
+  <div id="app">
+    <div class="pwd-layout" :class="{ 'sidebar-collapsed': sidebarCollapsed }">
+      <aside class="pwd-sidebar" :style="{ width: sidebarCollapsed ? '64px' : '240px' }">
+        <div class="sidebar-header">
+          <div class="logo-wrapper">
+            <span class="logo-icon">P</span>
+            <span v-show="!sidebarCollapsed" class="logo-title">人员管控平台</span>
+          </div>
+        </div>
+        <el-menu :default-active="activeMenu" :collapse="sidebarCollapsed" :unique-opened="true"
+          background-color="#001529" text-color="#ffffffb3" active-text-color="#ffffff" @select="handleMenuSelect">
+          <el-sub-menu index="workflow">
+            <template #title><el-icon><List /></el-icon><span>工作流模块</span></template>
+            <el-sub-menu index="workflow-a"><template #title>准入办证服务</template>
+              <el-menu-item index="workflow-issued-a">已发任务</el-menu-item>
+              <el-menu-item index="workflow-pending-a">待办任务</el-menu-item>
+              <el-menu-item index="workflow-done-a">已办任务</el-menu-item>
+            </el-sub-menu>
+            <el-sub-menu index="workflow-b"><template #title>访客管理服务</template>
+              <el-menu-item index="workflow-issued-b">已发任务</el-menu-item>
+              <el-menu-item index="workflow-pending-b">待办任务</el-menu-item>
+              <el-menu-item index="workflow-done-b">已办任务</el-menu-item>
+            </el-sub-menu>
+            <el-sub-menu index="workflow-c"><template #title>离场准出服务</template>
+              <el-menu-item index="workflow-issued-c">已发任务</el-menu-item>
+              <el-menu-item index="workflow-pending-c">待办任务</el-menu-item>
+              <el-menu-item index="workflow-done-c">已办任务</el-menu-item>
+            </el-sub-menu>
+            <el-sub-menu index="workflow-d"><template #title>安全考评服务</template>
+              <el-menu-item index="workflow-issued-d">已发任务</el-menu-item>
+              <el-menu-item index="workflow-pending-d">待办任务</el-menu-item>
+              <el-menu-item index="workflow-done-d">已办任务</el-menu-item>
+            </el-sub-menu>
+          </el-sub-menu>
+          <el-sub-menu index="org">
+            <template #title><el-icon><Setting /></el-icon><span>组织权限服务</span></template>
+            <el-menu-item index="org-dept">组织管理</el-menu-item>
+            <el-menu-item index="org-role">角色管理</el-menu-item>
+            <el-menu-item index="org-user">用户管理</el-menu-item>
+            <el-menu-item index="org-menu">菜单权限</el-menu-item>
+          </el-sub-menu>
+          <el-sub-menu index="personnel">
+            <template #title><el-icon><User /></el-icon><span>人员主数据服务</span></template>
+            <el-menu-item index="personnel-archive">一人一档</el-menu-item>
+            <el-menu-item index="personnel-qual-template">资质模板</el-menu-item>
+            <el-menu-item index="personnel-qualification">资质管理</el-menu-item>
+            <el-menu-item index="personnel-training">培训记录</el-menu-item>
+            <el-menu-item index="personnel-safety">安全记录</el-menu-item>
+          </el-sub-menu>
+          <el-sub-menu index="onsite">
+            <template #title><el-icon><Monitor /></el-icon><span>在岗现场管控服务</span></template>
+            <el-menu-item index="onsite-violation">违规事件</el-menu-item>
+            <el-sub-menu index="onsite-wo"><template #title>工单管理</template>
+              <el-menu-item index="onsite-wo-issued">已发任务</el-menu-item>
+              <el-menu-item index="onsite-wo-pending">待办任务</el-menu-item>
+              <el-menu-item index="onsite-wo-done">已办任务</el-menu-item>
+            </el-sub-menu>
+            <el-menu-item index="onsite-geofence">电子围栏</el-menu-item>
+            <el-menu-item index="onsite-location">定位轨迹</el-menu-item>
+          </el-sub-menu>
+          <el-sub-menu index="safety">
+            <template #title><el-icon><DataAnalysis /></el-icon><span>安全考评积分服务</span></template>
+            <el-menu-item index="safety-rule">积分规则配置</el-menu-item>
+            <el-menu-item index="safety-calculate">积分计算</el-menu-item>
+            <el-menu-item index="safety-score">积分管理</el-menu-item>
+          </el-sub-menu>
+          <el-sub-menu index="common">
+            <template #title><el-icon><FolderOpened /></el-icon><span>公共能力服务</span></template>
+            <el-menu-item index="common-file">文件管理</el-menu-item>
+            <el-menu-item index="common-message">消息推送</el-menu-item>
+            <el-menu-item index="common-log">日志审计</el-menu-item>
+          </el-sub-menu>
+        </el-menu>
+      </aside>
+      <div class="pwd-main">
+        <header class="pwd-header">
+          <div class="header-left">
+            <el-button class="collapse-btn" @click="sidebarCollapsed = !sidebarCollapsed" :icon="Fold" text></el-button>
+            <el-breadcrumb separator="/">
+              <el-breadcrumb-item>首页</el-breadcrumb-item>
+              <el-breadcrumb-item v-if="breadcrumb[0]">{{ breadcrumb[0] }}</el-breadcrumb-item>
+              <el-breadcrumb-item v-if="breadcrumb[1]">{{ breadcrumb[1] }}</el-breadcrumb-item>
+            </el-breadcrumb>
+          </div>
+          <div class="header-right">
+            <el-badge :value="3" class="header-badge">
+              <el-icon :size="20"><Bell /></el-icon>
+            </el-badge>
+            <el-dropdown trigger="click">
+              <span class="user-info">
+                <el-icon :size="18"><UserFilled /></el-icon>
+                <span>管理员</span>
+                <el-icon><ArrowDown /></el-icon>
+              </span>
+              <template #dropdown>
+                <el-dropdown-menu>
+                  <el-dropdown-item>个人中心</el-dropdown-item>
+                  <el-dropdown-item>修改密码</el-dropdown-item>
+                  <el-dropdown-item divided @click="handleLogout">退出登录</el-dropdown-item>
+                </el-dropdown-menu>
+              </template>
+            </el-dropdown>
+          </div>
+        </header>
+        <div class="pwd-tabs" v-if="openedTabs.length > 0">
+          <div class="tabs-scroll">
+            <div v-for="(tab, index) in openedTabs" :key="tab.path"
+              :class="['tab-item', { active: tab.path === activeMenu }]" @click="switchTab(tab)">
+              <span class="tab-label">{{ tab.title }}</span>
+              <el-icon class="tab-close" @click.stop="closeTab(tab, index)"><Close /></el-icon>
+            </div>
+          </div>
+        </div>
+        <main class="pwd-content" id="mainContent">
+          <div id="pageContainer"></div>
+        </main>
+      </div>
+    </div>
+    <el-dialog v-model="maskDialogVisible" title="敏感信息查看" width="400px">
+      <p>您即将查看敏感信息，操作将被记录。</p>
+      <template #footer>
+        <el-button @click="maskDialogVisible = false">取消</el-button>
+        <el-button type="primary" @click="confirmViewSensitive">确认查看</el-button>
+      </template>
+    </el-dialog>
+  </div>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <script src="https://unpkg.com/element-plus/dist/index.full.min.js"></script>
+  <script src="https://unpkg.com/@element-plus/icons-vue/dist/index.iife.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/mock-data.js"></script>
+  <script src="js/workflow-engine.js"></script>
+  <script src="js/module-pages.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

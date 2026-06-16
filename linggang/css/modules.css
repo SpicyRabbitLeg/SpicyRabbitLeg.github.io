@@ -1,0 +1,508 @@
+/* ============================================================
+ * 业务模块通用样式
+ * ============================================================ */
+
+/* 统计卡片 */
+.stat-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 16px; }
+.stat-card { 
+  background: var(--pwd-bg-white); border-radius: var(--pwd-radius);
+  padding: 20px; box-shadow: 0 1px 2px rgba(0,0,0,0.04); cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s; display: flex; align-items: center; gap: 16px;
+}
+.stat-card:hover { transform: translateY(-2px); box-shadow: var(--pwd-shadow); }
+.stat-card__icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; color: #fff; }
+.stat-card__icon--blue { background: linear-gradient(135deg, #1890ff, #40a9ff); }
+.stat-card__icon--green { background: linear-gradient(135deg, #52c41a, #73d13d); }
+.stat-card__icon--orange { background: linear-gradient(135deg, #faad14, #ffc53d); }
+.stat-card__icon--red { background: linear-gradient(135deg, #f5222d, #ff4d4f); }
+.stat-card__info { flex: 1; }
+.stat-card__label { color: var(--pwd-text-secondary); font-size: var(--pwd-font-size-sm); }
+.stat-card__value { font-size: 28px; font-weight: 700; color: var(--pwd-text-primary); margin-top: 4px; }
+
+/* 组织树 */
+.org-tree { padding: 20px; background: var(--pwd-bg-white); border-radius: var(--pwd-radius); min-height: 300px; }
+
+/* 人员档案卡片 */
+.person-card { 
+  display: flex; gap: 20px; padding: 24px; background: var(--pwd-bg-white);
+  border-radius: var(--pwd-radius); box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
+.person-card__avatar { width: 80px; height: 80px; border-radius: 50%; background: #e6f7ff; display: flex; align-items: center; justify-content: center; font-size: 36px; color: var(--pwd-primary); flex-shrink: 0; }
+.person-card__info { flex: 1; }
+.person-card__name { font-size: 20px; font-weight: 600; }
+.person-card__detail { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px 24px; margin-top: 12px; }
+.person-card__detail-item { color: var(--pwd-text-regular); font-size: var(--pwd-font-size); }
+.person-card__detail-item span:first-child { color: var(--pwd-text-secondary); }
+
+/* 预警横幅 */
+.warning-banner { 
+  display: flex; align-items: center; gap: 12px; padding: 12px 20px;
+  background: #fffbe6; border: 1px solid #ffe58f; border-radius: var(--pwd-radius);
+  margin-bottom: 16px; color: #ad8b00;
+}
+.warning-banner__icon { font-size: 20px; }
+.warning-banner__text { flex: 1; }
+.warning-banner__count { font-weight: 600; color: #fa8c16; }
+
+/* 考核积分进度 */
+.score-bar { display: flex; align-items: center; gap: 12px; }
+.score-bar__progress { flex: 1; }
+.score-bar__value { font-weight: 600; color: var(--pwd-primary); white-space: nowrap; }
+
+/* 规则配置卡片 */
+.rule-card { 
+  border: 1px solid var(--pwd-border-light); border-radius: var(--pwd-radius);
+  padding: 16px; margin-bottom: 12px; background: #fafbfc; transition: border-color 0.3s;
+}
+.rule-card:hover { border-color: var(--pwd-primary); }
+.rule-card__header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.rule-card__title { font-weight: 600; }
+.rule-card__body { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px 20px; font-size: var(--pwd-font-size-sm); color: var(--pwd-text-regular); }
+
+/* 工单列表 */
+.workorder-list .el-table .el-table__row--expedited { background: #fff1f0; }
+
+/* 文件管理 */
+.file-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+.file-card { 
+  padding: 16px; border: 1px solid var(--pwd-border-light); border-radius: var(--pwd-radius);
+  text-align: center; cursor: pointer; transition: all 0.3s;
+}
+.file-card:hover { border-color: var(--pwd-primary); box-shadow: 0 2px 8px rgba(24,144,255,0.15); }
+.file-card__icon { font-size: 40px; color: var(--pwd-primary); margin-bottom: 8px; }
+.file-card__name { font-weight: 500; word-break: break-all; }
+.file-card__size { color: var(--pwd-text-secondary); font-size: var(--pwd-font-size-sm); margin-top: 4px; }
+
+/* 日志审计表格 */
+.log-table .el-table td { font-size: var(--pwd-font-size-sm); }
+
+/* ========== 人员主数据服务 - 详情页样式 ========== */
+
+/* 详情页容器 */
+.personnel-detail {
+  padding: 0;
+}
+
+.personnel-detail__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--pwd-border-light);
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.personnel-detail__title {
+  font-size: 18px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.personnel-detail__actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* 详情页Tabs导航 */
+.detail-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--pwd-border-light);
+  margin-bottom: 20px;
+  padding: 0 20px;
+  background: var(--pwd-bg-white);
+}
+
+.detail-tab-item {
+  padding: 0 20px;
+  height: 40px;
+  line-height: 40px;
+  cursor: pointer;
+  color: var(--pwd-text-regular);
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.detail-tab-item:hover {
+  color: var(--pwd-primary);
+}
+
+.detail-tab-item.is-active {
+  color: var(--pwd-primary);
+  border-bottom-color: var(--pwd-primary);
+  font-weight: 500;
+}
+
+/* 信息卡片 */
+.info-card {
+  border: 1px solid var(--pwd-border-light);
+  border-radius: var(--pwd-radius);
+  margin-bottom: 16px;
+  background: var(--pwd-bg-white);
+}
+
+.info-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  background: #fafbfc;
+  border-bottom: 1px solid var(--pwd-border-light);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.info-card__body {
+  padding: 20px;
+}
+
+/* 信息网格 */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px 32px;
+}
+
+.info-grid--2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.info-grid--4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.info-item__label {
+  font-size: 12px;
+  color: var(--pwd-text-secondary);
+}
+
+.info-item__value {
+  font-size: 14px;
+  color: var(--pwd-text-primary);
+  font-weight: 500;
+  word-break: break-all;
+}
+
+.info-item__value--warning {
+  color: var(--pwd-danger);
+}
+
+.info-item__value--expired {
+  color: var(--pwd-danger);
+  font-weight: 600;
+}
+
+.info-item__value--expiring {
+  color: var(--pwd-warning);
+  font-weight: 600;
+}
+
+/* 人员头部信息卡片 (大卡片) */
+.person-header-card {
+  display: flex;
+  gap: 24px;
+  padding: 24px;
+  background: linear-gradient(135deg, #e6f7ff 0%, #f0f5ff 100%);
+  border-radius: var(--pwd-radius);
+  margin-bottom: 20px;
+  border: 1px solid #91d5ff;
+}
+
+.person-header-card__avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--pwd-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.person-header-card__info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.person-header-card__name {
+  font-size: 22px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.person-header-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 20px;
+  font-size: 13px;
+  color: var(--pwd-text-regular);
+}
+
+.person-header-card__meta span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.person-header-card__meta .meta-label {
+  color: var(--pwd-text-secondary);
+}
+
+/* 附件区域 */
+.attachment-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.attachment-card {
+  border: 1px solid var(--pwd-border-light);
+  border-radius: var(--pwd-radius);
+  padding: 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.attachment-card:hover {
+  border-color: var(--pwd-primary);
+  box-shadow: 0 2px 8px rgba(24,144,255,0.1);
+}
+
+.attachment-card__icon {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.attachment-card__name {
+  font-size: 12px;
+  color: var(--pwd-text-primary);
+  word-break: break-all;
+  margin-bottom: 4px;
+}
+
+.attachment-card__meta {
+  font-size: 11px;
+  color: var(--pwd-text-secondary);
+}
+
+/* 资质/培训/安全记录条 (用于关联数据显示) */
+.related-record-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--pwd-border-light);
+  transition: background 0.2s;
+}
+
+.related-record-item:last-child {
+  border-bottom: none;
+}
+
+.related-record-item:hover {
+  background: #fafafa;
+}
+
+.related-record-item__info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.related-record-item__title {
+  font-weight: 500;
+  color: var(--pwd-primary);
+  cursor: pointer;
+}
+
+.related-record-item__meta {
+  font-size: 12px;
+  color: var(--pwd-text-secondary);
+}
+
+.related-record-item__status {
+  flex-shrink: 0;
+}
+
+/* 高级筛选面板 */
+.advanced-filter {
+  display: none;
+  padding: 16px 20px;
+  background: #fafbfc;
+  border: 1px solid var(--pwd-border-light);
+  border-radius: var(--pwd-radius);
+  margin-top: 8px;
+  margin-bottom: 12px;
+}
+
+.advanced-filter.is-visible {
+  display: block;
+}
+
+.advanced-filter__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px 20px;
+}
+
+.advanced-filter__actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--pwd-border-light);
+}
+
+/* 数据看板入口 */
+.dashboard-entry {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.dashboard-stat {
+  flex: 1;
+  min-width: 180px;
+  padding: 16px 20px;
+  background: var(--pwd-bg-white);
+  border-radius: var(--pwd-radius);
+  border: 1px solid var(--pwd-border-light);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.dashboard-stat:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--pwd-shadow);
+}
+
+.dashboard-stat__value {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.dashboard-stat__label {
+  font-size: 12px;
+  color: var(--pwd-text-secondary);
+  margin-top: 4px;
+}
+
+.dashboard-stat__value--primary { color: var(--pwd-primary); }
+.dashboard-stat__value--success { color: var(--pwd-success); }
+.dashboard-stat__value--warning { color: var(--pwd-warning); }
+.dashboard-stat__value--danger { color: var(--pwd-danger); }
+
+/* 表格行内操作列 */
+.action-btns {
+  display: flex;
+  gap: 4px;
+  flex-wrap: nowrap;
+}
+
+/* 提醒设置弹窗模拟 */
+.reminder-config {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  flex-wrap: wrap;
+}
+
+/* 详情页Tab内容容器 */
+.detail-tab-content {
+  animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 表头选中框与行样式增强 */
+.el-table th input[type="checkbox"] {
+  cursor: pointer;
+}
+
+.el-table td {
+  vertical-align: middle;
+}
+
+/* 操作按钮组不换行 */
+.action-btns {
+  display: flex;
+  gap: 4px;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+
+/* 分页容器 */
+.el-pagination {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  user-select: none;
+}
+
+/* 统计卡片(详情页) */
+.stats-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.stat-mini-card {
+  flex: 1;
+  padding: 16px 20px;
+  background: var(--pwd-bg-white);
+  border: 1px solid var(--pwd-border-light);
+  border-radius: var(--pwd-radius);
+  text-align: center;
+}
+
+.stat-mini-card__value {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--pwd-primary);
+}
+
+.stat-mini-card__label {
+  font-size: 12px;
+  color: var(--pwd-text-secondary);
+  margin-top: 4px;
+}
+
+/* 响应式 */
+@media screen and (max-width: 1400px) {
+  .stat-cards { grid-template-columns: repeat(2, 1fr); }
+  .person-card__detail { grid-template-columns: repeat(2, 1fr); }
+  .info-grid { grid-template-columns: repeat(2, 1fr); }
+  .info-grid--4 { grid-template-columns: repeat(2, 1fr); }
+  .advanced-filter__grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media screen and (max-width: 1200px) {
+  .dashboard-entry { grid-template-columns: repeat(2, 1fr); }
+  .stats-row { flex-wrap: wrap; }
+  .stat-mini-card { min-width: 120px; }
+}

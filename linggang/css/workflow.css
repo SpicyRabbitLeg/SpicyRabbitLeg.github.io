@@ -1,0 +1,77 @@
+/* ============================================================
+ * 工作流模块专属样式
+ * ============================================================ */
+
+/* 流程任务编辑页面 */
+.workflow-editor { display: flex; flex-direction: column; height: calc(100vh - 180px); }
+
+/* 顶部操作按钮区 */
+.workflow-editor__toolbar {
+  display: flex; gap: 10px; align-items: center; padding: 12px 20px;
+  background: var(--pwd-bg-white); border-radius: var(--pwd-radius);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04); flex-shrink: 0; margin-bottom: 8px;
+}
+.workflow-editor__toolbar .el-button + .el-button { margin-left: 0; }
+.workflow-editor__toolbar .spacer { flex: 1; }
+
+/* Tabs内容区 */
+.workflow-editor__tabs { flex: 1; display: flex; flex-direction: column; background: var(--pwd-bg-white); border-radius: var(--pwd-radius); overflow: hidden; }
+.workflow-editor__tabs .el-tabs { height: 100%; display: flex; flex-direction: column; }
+.workflow-editor__tabs .el-tabs__header { margin: 0; padding: 0 20px; flex-shrink: 0; }
+.workflow-editor__tabs .el-tabs__content { flex: 1; overflow-y: auto; padding: 20px; }
+
+/* 表单标签页 */
+.workflow-form { max-width: 900px; }
+.workflow-form .el-form-item { margin-bottom: 18px; }
+.workflow-form .el-form-item__label { font-weight: 500; }
+.workflow-form__section { margin-bottom: 20px; }
+.workflow-form__section-title { 
+  font-size: var(--pwd-font-size-lg); font-weight: 600; padding-bottom: 10px;
+  margin-bottom: 16px; border-bottom: 1px solid var(--pwd-border-light);
+  padding-left: 10px; border-left: 3px solid var(--pwd-primary);
+}
+
+/* 流程图标签页 */
+.workflow-diagram { 
+  width: 100%; height: 100%; min-height: 500px; position: relative;
+  background: #fafbfc; border-radius: var(--pwd-radius); overflow: hidden;
+}
+.workflow-diagram__canvas { width: 100%; height: 100%; }
+.workflow-diagram__controls {
+  position: absolute; bottom: 16px; right: 16px; display: flex; gap: 8px;
+  background: rgba(255,255,255,0.9); padding: 8px; border-radius: var(--pwd-radius);
+  box-shadow: var(--pwd-shadow);
+}
+
+/* BPMN节点样式（SVG内联模拟） */
+.bpmn-container { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; padding: 40px; }
+.bpmn-flow { display: flex; flex-direction: column; align-items: center; gap: 0; }
+.bpmn-node { 
+  width: 180px; padding: 16px 20px; border-radius: 8px; text-align: center;
+  cursor: pointer; transition: all 0.3s ease; position: relative;
+}
+.bpmn-node:hover { transform: scale(1.05); box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
+.bpmn-node__title { font-weight: 600; font-size: var(--pwd-font-size); }
+.bpmn-node__desc { font-size: var(--pwd-font-size-sm); color: var(--pwd-text-secondary); margin-top: 4px; }
+.bpmn-node--start { background: #e6f7ff; border: 2px solid #1890ff; color: #1890ff; border-radius: 50%; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; }
+.bpmn-node--active { background: #e6f7ff; border: 2px solid #1890ff; box-shadow: 0 0 16px rgba(24,144,255,0.3); }
+.bpmn-node--done { background: #f6ffed; border: 2px solid #52c41a; }
+.bpmn-node--pending { background: #fafafa; border: 2px solid #d9d9d9; color: #999; }
+.bpmn-node--end { background: #fff1f0; border: 2px solid #f5222d; border-radius: 50%; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; }
+.bpmn-arrow { width: 2px; height: 40px; background: #d9d9d9; position: relative; }
+.bpmn-arrow::after { content: ''; position: absolute; bottom: -6px; left: -4px; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 6px solid #d9d9d9; }
+.bpmn-arrow--done { background: #52c41a; }
+.bpmn-arrow--done::after { border-top-color: #52c41a; }
+.bpmn-node-tooltip { display: none; position: absolute; top: -80px; left: 50%; transform: translateX(-50%); background: #fff; border-radius: 6px; padding: 10px 14px; box-shadow: var(--pwd-shadow); width: 220px; z-index: 10; }
+.bpmn-node:hover .bpmn-node-tooltip { display: block; }
+
+/* 流转记录时间轴 - 继承全局 .timeline */
+
+/* 工作流任务列表紧凑样式 */
+.workflow-table .el-table th { background: #fafafa; }
+
+/* 权限冻结提示 */
+.permission-frozen { 
+  margin-top: 8px; padding: 8px 12px; background: #fff2f0; border-radius: var(--pwd-radius);
+  color: #a8071a; font-size: var(--pwd-font-size-sm); border: 1px solid #ffccc7;
+}
