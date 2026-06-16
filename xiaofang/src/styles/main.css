@@ -1,0 +1,259 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #0f0f1a;
+  color: #eee;
+}
+
+#canvas {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+
+#ui-root {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 10;
+  max-width: 320px;
+}
+
+.panel {
+  background: rgba(15, 15, 30, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  padding: 16px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.panel h1 {
+  font-size: 16px;
+  margin-bottom: 12px;
+  color: #ff6644;
+}
+
+.section {
+  margin-bottom: 12px;
+}
+
+.section label {
+  display: block;
+  font-size: 12px;
+  color: #aaa;
+  margin-bottom: 4px;
+}
+
+.section select {
+  width: 100%;
+  padding: 6px 8px;
+  background: #1a1a2e;
+  border: 1px solid #333;
+  color: #fff;
+  border-radius: 4px;
+}
+
+.checkbox {
+  display: flex !important;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  color: #ccc !important;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.actions button {
+  flex: 1;
+  padding: 8px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+#btn-start {
+  background: #00aa55;
+  color: #fff;
+}
+
+#btn-stop {
+  background: #cc3344;
+  color: #fff;
+}
+
+button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.stats {
+  font-size: 12px;
+  line-height: 1.8;
+  color: #bbb;
+}
+
+.stats span {
+  color: #00ff88;
+  font-weight: 600;
+}
+
+.help {
+  font-size: 11px;
+  color: #666;
+  line-height: 1.5;
+}
+
+.result {
+  margin-top: 12px;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+.result.pass {
+  background: rgba(0, 170, 85, 0.2);
+  border: 1px solid #00aa55;
+}
+
+.result.fail {
+  background: rgba(204, 51, 68, 0.2);
+  border: 1px solid #cc3344;
+}
+
+.result.hidden,
+.error.hidden {
+  display: none;
+}
+
+.error {
+  margin-top: 8px;
+  padding: 8px;
+  background: rgba(255, 0, 0, 0.15);
+  border: 1px solid #ff4444;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.route-editor-panel {
+  margin-top: 8px;
+  padding: 10px;
+  background: rgba(255, 204, 0, 0.06);
+  border: 1px solid rgba(255, 204, 0, 0.25);
+  border-radius: 6px;
+}
+
+.route-editor-panel.hidden {
+  display: none;
+}
+
+.route-editor-panel input[type='text'] {
+  width: 100%;
+  padding: 6px 8px;
+  margin-bottom: 6px;
+  background: #1a1a2e;
+  border: 1px solid #333;
+  color: #fff;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.route-editor-panel select {
+  margin-bottom: 8px;
+}
+
+.route-editor-status {
+  font-size: 12px;
+  color: #ccc;
+  margin-bottom: 8px;
+}
+
+.route-editor-status span {
+  color: #ffcc00;
+  font-weight: 600;
+}
+
+.route-editor-actions,
+.route-editor-io {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.route-editor-actions button,
+.route-editor-io button,
+.btn-import {
+  flex: 1;
+  min-width: 80px;
+  padding: 6px 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 11px;
+  background: #2a2a44;
+  color: #eee;
+  text-align: center;
+}
+
+.route-editor-actions button:hover,
+.route-editor-io button:hover,
+.btn-import:hover {
+  background: #3a3a55;
+}
+
+#btn-finish-route {
+  background: #cc8800;
+  color: #fff;
+}
+
+#btn-delete-route.danger {
+  background: rgba(204, 51, 68, 0.3);
+  border: 1px solid #cc3344;
+  color: #ff8888;
+}
+
+.btn-import {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.route-editor-hint {
+  font-size: 10px;
+  color: #888;
+  line-height: 1.4;
+}
+
+.route-editor-msg {
+  margin-top: 6px;
+  padding: 6px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+}
+
+.route-editor-msg.hidden {
+  display: none;
+}
+
+.route-editor-msg.ok-msg {
+  background: rgba(0, 170, 85, 0.15);
+  border: 1px solid #00aa55;
+  color: #88ffbb;
+}
+
+.route-editor-msg.error-msg {
+  background: rgba(204, 51, 68, 0.15);
+  border: 1px solid #cc3344;
+  color: #ffaaaa;
+}
